@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Location))]
 public class PlayerController : MonoBehaviour 
 {
     private const float MOVEMENT_SPEED = 1.0f;
@@ -22,14 +23,16 @@ public class PlayerController : MonoBehaviour
     private bool m_bIsPossessing = false;
     private bool m_bIsExitingPossessionButton = false;
 
-
-	// Use this for initialization
-	void Start () 
+    private Location m_location;
+    // Use this for initialization
+    void Start () 
     {
         m_RigidBody = this.GetComponent<Rigidbody2D>();
         m_SpoopyRangeCollider = this.GetComponent<CircleCollider2D>();
         m_Renderer = this.GetComponent<SpriteRenderer>();
-	}
+        m_location = this.GetComponent<Location>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -149,8 +152,12 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+        if (collision.tag == "Room")
+        {
 
-	}
+            m_location.CurrentRoom = collision.gameObject;
+        }
+    }
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
