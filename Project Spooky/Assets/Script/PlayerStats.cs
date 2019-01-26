@@ -11,6 +11,9 @@ public class PlayerStats : MonoBehaviour
     float m_CurrentSpookJuiceDecreaseTimer;
     float m_CurrentSpookJuice;
 
+    int m_PlayerScore;
+    bool m_bHasDoneHiddenScore = false;
+
     PlayerController m_PlayerController;
     PlayerUI m_PlayerUI;
 
@@ -21,6 +24,8 @@ public class PlayerStats : MonoBehaviour
         m_PlayerUI = this.gameObject.GetComponent<PlayerUI>();
         m_CurrentSpookJuiceDecreaseTimer = SPOOKJUICE_DECREASE_INTERVAL;
         m_CurrentSpookJuice = MAX_SPOOKJUICE;
+
+        m_PlayerScore = 0;
 	}
 	
 	// Update is called once per frame
@@ -47,6 +52,18 @@ public class PlayerStats : MonoBehaviour
             m_CurrentSpookJuice = MAX_SPOOKJUICE;
         }
 
+        //Spooky number
+        if (m_PlayerScore == 666 && m_bHasDoneHiddenScore == false)
+        {
+            m_bHasDoneHiddenScore = true;
+            m_CurrentSpookJuice = MAX_SPOOKJUICE;
+
+            //Do something to the spooky meter, change it red or something for a bit
+            //Play a special sound?
+        }
+
+
+
 	}
 
     public float GetCurrentSpookJuice()
@@ -67,5 +84,15 @@ public class PlayerStats : MonoBehaviour
     public void RemoveFromSpookJuice(float amountToRemove)
     {
         m_CurrentSpookJuice -= amountToRemove;
+    }
+
+    public void AddToScore(int amountToAdd)
+    {
+        m_PlayerScore += amountToAdd;
+    }
+
+    public int GetScore()
+    {
+        return m_PlayerScore;
     }
 }

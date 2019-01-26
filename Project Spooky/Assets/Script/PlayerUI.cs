@@ -7,6 +7,8 @@ public class PlayerUI : MonoBehaviour
 {
     public GameObject m_SpookJuiceBar;
     private Image m_SpookJuiceImage;
+    private float m_SpookyEvilTimer = 0.0f;
+    private const float SPOOKY_EVIL_TIMER_MAX = 5.0f;
 
     PlayerStats m_PlayerStats;
 
@@ -32,4 +34,5 @@ public class PlayerUI : MonoBehaviour
     {
         m_SpookJuiceImage.fillAmount = m_PlayerStats.GetCurrentSpookJuice() / 100.0f;
     }
+
 }
