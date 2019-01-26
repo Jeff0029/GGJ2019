@@ -22,7 +22,9 @@ GameObject:
   - component: {fileID: 195656345648931828}
   - component: {fileID: 212772110337907096}
   - component: {fileID: 114561060920575222}
-  m_Layer: 0
+  - component: {fileID: 70347701056293076}
+  - component: {fileID: 114016483384985144}
+  m_Layer: 9
   m_Name: Civilian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,6 +44,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &70347701056293076
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1451426221408988}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.55, y: 0.87}
+  m_Direction: 0
+--- !u!114 &114016483384985144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1451426221408988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f23454d9d084cb89d26b3a77addcf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114561060920575222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cef7de4c57b41c9930294b35e2c35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entrance: {fileID: 0}
+  m_entrance: {fileID: 0}
 --- !u!195 &195656345648931828
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -74,7 +102,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!212 &212772110337907096
 SpriteRenderer:
   m_ObjectHideFlags: 1

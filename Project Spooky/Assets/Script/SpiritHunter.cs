@@ -20,7 +20,7 @@ public class SpiritHunter : AI {
 
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("collided");
         Debug.Log(other.name);
