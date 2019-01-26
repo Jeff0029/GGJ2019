@@ -1209,6 +1209,11 @@ Prefab:
       propertyPath: m_SortingLayer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 224275286592440172, guid: aea3a57c0d08146cdb7a4bcdb567e721,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aea3a57c0d08146cdb7a4bcdb567e721, type: 2}
   m_IsPrefabParent: 0

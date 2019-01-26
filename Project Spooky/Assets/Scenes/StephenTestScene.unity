@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &59785143
+--- !u!1001 &1638861676
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -152,10 +152,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224203494904401708, guid: aea3a57c0d08146cdb7a4bcdb567e721,
+    - target: {fileID: 224721500954118180, guid: aea3a57c0d08146cdb7a4bcdb567e721,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.099975586
+      value: -17.47998
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aea3a57c0d08146cdb7a4bcdb567e721, type: 2}
