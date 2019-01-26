@@ -9,12 +9,18 @@ public class PlayerController : MonoBehaviour
     private const float QUICK_DRAG_SLOWDOWN = 0.5f;
 
     private Rigidbody2D m_RigidBody;
+
     private CircleCollider2D m_SpoopyRangeCollider;
     public BoxCollider2D m_HeadCollider;
     public BoxCollider2D m_BodyCollider;
 
+    private SpriteRenderer m_Renderer;
+
+    private GameObject m_CurrentGameObjectPossessing = null;
+
     private bool m_bIsUsingPossessionButton = false;
     private bool m_bIsPossessing = false;
+    private bool m_bIsExitingPossessionButton = false;
 
 
 	// Use this for initialization
@@ -22,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         m_RigidBody = this.GetComponent<Rigidbody2D>();
         m_SpoopyRangeCollider = this.GetComponent<CircleCollider2D>();
+        m_Renderer = this.GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -31,42 +38,78 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void FixedUpdate()
-	{
+    {
         GetPlayerInput();
         CapMovementSpeed();
 	}
 
     private void GetPlayerInput()
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        /*
+         * WASD / Arrows to move
+         * Space bar to go into item
+         * Space bar / left click to use the item when you're in it
+         * E / Right click to exit
+         */
+
+        if (!m_bIsPossessing)
         {
-            m_RigidBody.AddForce(new Vector2(0.0f, MOVEMENT_SPEED), ForceMode2D.Impulse);
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                m_RigidBody.AddForce(new Vector2(0.0f, MOVEMENT_SPEED), ForceMode2D.Impulse);
+            }
+
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                m_RigidBody.AddForce(new Vector2(-MOVEMENT_SPEED, 0.0f), ForceMode2D.Impulse);
+            }
+
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                m_RigidBody.AddForce(new Vector2(0.0f, -MOVEMENT_SPEED), ForceMode2D.Impulse);
+            }
+
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                m_RigidBody.AddForce(new Vector2(MOVEMENT_SPEED, 0.0f), ForceMode2D.Impulse);
+            }
         }
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (m_bIsPossessing == true && m_bIsExitingPossessionButton == true)
         {
-            m_RigidBody.AddForce(new Vector2(-MOVEMENT_SPEED, 0.0f), ForceMode2D.Impulse);
+            //exit possession function
+            if (m_CurrentGameObjectPossessing != null)
+            {
+                DeactivatePossession();
+            }
         }
 
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            m_RigidBody.AddForce(new Vector2(0.0f, -MOVEMENT_SPEED), ForceMode2D.Impulse);
-        }
-
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            m_RigidBody.AddForce(new Vector2(MOVEMENT_SPEED, 0.0f), ForceMode2D.Impulse);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             m_bIsUsingPossessionButton = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && Input.GetMouseButtonUp(0))
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
             m_bIsUsingPossessionButton = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (m_bIsPossessing)
+            {
+                m_bIsExitingPossessionButton = true;
+            }
+        }
+
+        else if (Input.GetKey(KeyCode.E))
+        {
+            if (m_bIsPossessing)
+            {
+                m_bIsExitingPossessionButton = false;
+            }
+        }
+
     }
 
     private void CapMovementSpeed()
@@ -102,6 +145,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 
@@ -116,10 +161,53 @@ public class PlayerController : MonoBehaviour
 	{
         if (collision.IsTouching(m_SpoopyRangeCollider) && collision.gameObject.tag == "PossessableObject")
         {
-            if (m_bIsUsingPossessionButton == true)
+            if (m_bIsUsingPossessionButton == true && m_bIsPossessing == false)
             {
+                ActivatePossession(collision.gameObject);
+            }
+
+            else if (m_bIsUsingPossessionButton == true && m_bIsPossessing == true)
+            {
+                //Use possession function from object
                 collision.gameObject.GetComponent<PossessableObject>().ActivateSpook();
+
             }
         }
 	}
+
+    private void ActivatePossession(GameObject gameObject)
+    {
+        m_CurrentGameObjectPossessing = gameObject;
+
+        gameObject.GetComponent<PossessableObject>().ResetTimer();
+
+        //call animatiom functions
+        //call the targetObject's functions
+        m_bIsPossessing = true;
+
+        this.transform.position.Set(m_CurrentGameObjectPossessing.transform.position.x,
+                                    m_CurrentGameObjectPossessing.transform.position.y,
+                                    m_CurrentGameObjectPossessing.transform.position.z);
+
+        //Do this in animation functions
+        m_Renderer.enabled = false;
+    }
+
+    private void DeactivatePossession()
+    {
+        //call animation functions
+        //call the targetObject's functions
+        m_bIsPossessing = false;
+        m_bIsExitingPossessionButton = false;
+
+        //Maybe take this out? Also, it needs to update from that frame of the gameobject so it is being weird.
+        this.transform.position.Set(m_CurrentGameObjectPossessing.transform.position.x,
+                                    m_CurrentGameObjectPossessing.transform.position.y,
+                                    m_CurrentGameObjectPossessing.transform.position.z);
+
+        //Do this in animation functions
+        m_Renderer.enabled = true;
+
+        m_CurrentGameObjectPossessing = null;
+    }
 }

@@ -44,4 +44,11 @@ public class PossessableObject : MonoBehaviour
             m_bIsOnCooldown = true;
         }
     }
+
+    //This hack is needed, don't ask
+    public void ResetTimer()
+    {
+        m_bIsOnCooldown = true;
+        m_CurrentCDTimer = 0.25f;
+    }
 }
