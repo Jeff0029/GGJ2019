@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SpiritHunter : AI {
 
+    private float drainCooldown = 0;
+
+    public float drainCooldownTime = 3f; // Seconds
+    public float drainDamage = 5f;
+
     Location playerLocation;
     // Use this for initialization
     void Start () {
@@ -13,26 +18,20 @@ public class SpiritHunter : AI {
 	
 	// Update is called once per frame
 	void Update () {
-        if (m_location.CurrentRoom != null && playerLocation.CurrentRoom != null && m_location.CurrentRoom.GetInstanceID() == playerLocation.CurrentRoom.GetInstanceID())
+        if (drainCooldown > 0)
         {
+            drainCooldown -= Time.deltaTime;
+        } else if (m_location.CurrentRoom != null && playerLocation.CurrentRoom != null && m_location.CurrentRoom.GetInstanceID() == playerLocation.CurrentRoom.GetInstanceID())
+        {
+            drainCooldown = drainCooldownTime;
             DrainJuice();
         }
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("collided");
-        Debug.Log(other.name);
-        if (other.tag == "Room")
-        {
-            Debug.Log("room found");
-        }
-    }
-
     private void DrainJuice()
     {
-
+        m_player.GetComponent<PlayerStats>().RemoveFromSpookJuice(drainDamage);
     }
 
 }
