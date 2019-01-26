@@ -175,11 +175,11 @@ public class PlayerController : MonoBehaviour
         }
 	}
 
-    private void ActivatePossession(GameObject gameObject)
+    private void ActivatePossession(GameObject targetObject)
     {
-        m_CurrentGameObjectPossessing = gameObject;
+        m_CurrentGameObjectPossessing = targetObject;
 
-        gameObject.GetComponent<PossessableObject>().ResetTimer();
+        targetObject.GetComponent<PossessableObject>().OnPossessionEnter();
 
         //call animatiom functions
         //call the targetObject's functions
@@ -196,7 +196,10 @@ public class PlayerController : MonoBehaviour
     private void DeactivatePossession()
     {
         //call animation functions
+
         //call the targetObject's functions
+        m_CurrentGameObjectPossessing.GetComponent<PossessableObject>().OnPossessionExit();
+
         m_bIsPossessing = false;
         m_bIsExitingPossessionButton = false;
 

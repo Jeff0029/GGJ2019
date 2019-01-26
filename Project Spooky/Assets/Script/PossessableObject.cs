@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PossessableObject : MonoBehaviour 
 {
+    public const string POSSESSED_ANIMATION = "possessed";
+    public const string SPOOKED_ANIMATION = "spooked";
+
     protected Rigidbody2D m_RigidBody;
     protected bool m_bIsOnCooldown = false;
     protected float m_CooldownTimer = 3.0f;
     protected float m_CurrentCDTimer;
 
+    protected Animator m_Animator;
+    protected bool m_IsObjectPossessed = false;
+
 	// Use this for initialization
 	void Start () 
     {
         m_RigidBody = this.GetComponent<Rigidbody2D>();
+        m_Animator = this.GetComponent<Animator>();
 
         m_CurrentCDTimer = m_CooldownTimer;
 	}
@@ -42,6 +49,8 @@ public class PossessableObject : MonoBehaviour
             m_RigidBody.AddForce(new Vector2(randomX, randomY), ForceMode2D.Impulse);
 
             m_bIsOnCooldown = true;
+
+            ActivateSpookAnimation();
         }
     }
 
@@ -50,5 +59,27 @@ public class PossessableObject : MonoBehaviour
     {
         m_bIsOnCooldown = true;
         m_CurrentCDTimer = 0.25f;
+    }
+
+    public virtual void ActivateSpookAnimation()
+    {
+        SetPossessionAnimation(false);
+        m_Animator.SetTrigger(SPOOKED_ANIMATION);
+    }
+
+    public virtual void SetPossessionAnimation(bool bAnimating)
+    {
+        m_Animator.SetBool(POSSESSED_ANIMATION, bAnimating);
+    }
+
+    public virtual void OnPossessionEnter()
+    {
+        ResetTimer();
+        SetPossessionAnimation(true);
+    }
+
+    public virtual void OnPossessionExit()
+    {
+        SetPossessionAnimation(false);
     }
 }
