@@ -5,17 +5,21 @@ using UnityEngine.AI;
 
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Location))]
 public class AI : MonoBehaviour {
 
-    public Transform entrance;
-    GameObject player;
+    public Transform m_entrance;
+    protected GameObject m_player;
 
-    NavMeshAgent agent;
+    protected Location m_location;
+    NavMeshAgent m_agent;
+
 	// Use this for initialization
-	void Start () {
-        agent = GetComponent<NavMeshAgent>();
-        player = GameObject.Find("Player");
-        SetNewDestination(player.transform);
+	protected void Start () {
+        m_agent = GetComponent<NavMeshAgent>();
+        m_location = GetComponent<Location>();
+        m_player = GameObject.Find("Player");
+        SetNewDestination(m_player.transform);
     }
 	
 	// Update is called once per frame
@@ -25,6 +29,8 @@ public class AI : MonoBehaviour {
 
     void SetNewDestination(Transform destination)
     {
-        agent.destination = destination.position;
+        //Go to a random room
+        m_agent.destination = destination.position;
     }
+
 }
