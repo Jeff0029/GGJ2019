@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Civilian : AI {
+public class AISpawnpoint : MonoBehaviour {
 
-    public Transform m_entrance;
-    // Use this for initialization
-    void Start () {
-        base.Start();
+	// Use this for initialization
+	void Start () {
+		
 	}
 	
 	// Update is called once per frame
