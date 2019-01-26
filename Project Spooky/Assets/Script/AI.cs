@@ -24,7 +24,7 @@ public class AI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
     void SetNewDestination(Transform destination)

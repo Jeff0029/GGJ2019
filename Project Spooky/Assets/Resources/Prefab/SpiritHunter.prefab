@@ -38,8 +38,8 @@ GameObject:
   - component: {fileID: 195747622955199046}
   - component: {fileID: 212640046027109356}
   - component: {fileID: 114168764018658594}
-  - component: {fileID: 136207214573962272}
   - component: {fileID: 114469207068106142}
+  - component: {fileID: 70378002492310512}
   m_Layer: 9
   m_Name: SpiritHunter
   m_TagString: Untagged
@@ -67,13 +67,28 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1788492198932722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.94, y: 0.5, z: -1}
+  m_LocalPosition: {x: -4.66, y: 1.18, z: -1}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4124302767581682}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &70378002492310512
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788492198932722}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.55, y: 0.87}
+  m_Direction: 0
 --- !u!108 &108038701191834292
 Light:
   m_ObjectHideFlags: 1
@@ -133,19 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f23454d9d084cb89d26b3a77addcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136207214573962272
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788492198932722}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195747622955199046
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -166,7 +168,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!212 &212640046027109356
 SpriteRenderer:
   m_ObjectHideFlags: 1
