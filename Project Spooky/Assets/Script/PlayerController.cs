@@ -11,9 +11,10 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D m_RigidBody;
 
-    private CircleCollider2D m_SpoopyRangeCollider;
+    private BoxCollider2D m_SpoopyRangeCollider;
     public BoxCollider2D m_HeadCollider;
     public BoxCollider2D m_BodyCollider;
+    public BoxCollider2D m_EyesCollider;
 
     private SpriteRenderer m_Renderer;
 
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
     void Start () 
     {
         m_RigidBody = this.GetComponent<Rigidbody2D>();
-        m_SpoopyRangeCollider = this.GetComponent<CircleCollider2D>();
+        m_SpoopyRangeCollider = this.GetComponent<BoxCollider2D>();
         m_Renderer = this.GetComponent<SpriteRenderer>();
         m_location = this.GetComponent<Location>();
 
@@ -156,12 +157,23 @@ public class PlayerController : MonoBehaviour
         {
 
             m_location.CurrentRoom = collision.gameObject;
+
+            if (collision.IsTouching(m_EyesCollider))
+            {
+                collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(true);
+            }
         }
     }
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		
+        if (collision.tag == "Room")
+        {
+            if (collision.IsTouching(m_EyesCollider))
+            {
+                collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(false);
+            }
+        }
 	}
 
 	private void OnTriggerStay2D(Collider2D collision)
