@@ -9,14 +9,19 @@ public class PlayerController : MonoBehaviour
     private const float QUICK_DRAG_SLOWDOWN = 0.5f;
 
     private Rigidbody2D m_RigidBody;
-    //private CircleCollider2D m_HeadHitbox;
+    private CircleCollider2D m_SpoopyRangeCollider;
+    public BoxCollider2D m_HeadCollider;
+    public BoxCollider2D m_BodyCollider;
+
+    private bool m_bIsUsingPossessionButton = false;
+    private bool m_bIsPossessing = false;
 
 
 	// Use this for initialization
 	void Start () 
     {
         m_RigidBody = this.GetComponent<Rigidbody2D>();
-        //m_HeadHitbox = this.GetComponent<CircleCollider2D>();
+        m_SpoopyRangeCollider = this.GetComponent<CircleCollider2D>();
 	}
 	
 	// Update is called once per frame
@@ -52,6 +57,16 @@ public class PlayerController : MonoBehaviour
         {
             m_RigidBody.AddForce(new Vector2(MOVEMENT_SPEED, 0.0f), ForceMode2D.Impulse);
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        {
+            m_bIsUsingPossessionButton = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && Input.GetMouseButtonUp(0))
+        {
+            m_bIsUsingPossessionButton = false;
+        }
     }
 
     private void CapMovementSpeed()
@@ -86,4 +101,25 @@ public class PlayerController : MonoBehaviour
             m_RigidBody.AddForce(new Vector2(0.0f, amountOver * -1), ForceMode2D.Impulse);
         }
     }
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		
+	}
+
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+        if (collision.IsTouching(m_SpoopyRangeCollider) && collision.gameObject.tag == "PossessableObject")
+        {
+            if (m_bIsUsingPossessionButton == true)
+            {
+                collision.gameObject.GetComponent<PossessableObject>().ActivateSpook();
+            }
+        }
+	}
 }
