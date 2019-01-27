@@ -79,7 +79,7 @@ public class AI : MonoBehaviour
         myAnim.SetBool("walking", false);
         yield return new WaitForSeconds(Random.Range(m_mintimeIdleInObjective, m_maxtimeIdleInObjective));
         IsMoving = true;
-        myAnim.SetBool("walking", true;
+        myAnim.SetBool("walking", true);
         yield return null;
     }
 
