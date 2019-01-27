@@ -78,6 +78,11 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 m_RigidBody.AddForce(new Vector2(-MOVEMENT_SPEED, 0.0f), ForceMode2D.Impulse);
+
+                if (m_Renderer.flipX == false)
+                {
+                    m_Renderer.flipX = true;
+                }
             }
 
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
@@ -88,6 +93,11 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 m_RigidBody.AddForce(new Vector2(MOVEMENT_SPEED, 0.0f), ForceMode2D.Impulse);
+
+                if (m_Renderer.flipX == true)
+                {
+                    m_Renderer.flipX = false;
+                }
             }
         }
 
