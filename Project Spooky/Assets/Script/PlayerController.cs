@@ -114,10 +114,7 @@ public class PlayerController : MonoBehaviour
 
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            if (!m_bIsPossessing)
-            {
-                m_bIsUsingPossessionButton = false;
-            }
+            m_bIsUsingPossessionButton = false;
         }
 
         else if (Input.GetKey(KeyCode.E))
@@ -250,6 +247,7 @@ public class PlayerController : MonoBehaviour
 
         m_bIsPossessing = false;
         m_bIsExitingPossessionButton = false;
+        m_bCanUseSpook = false;
 
         //Maybe take this out? Also, it needs to update from that frame of the gameobject so it is being weird.
         this.transform.position.Set(m_CurrentGameObjectPossessing.transform.position.x,
