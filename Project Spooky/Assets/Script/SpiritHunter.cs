@@ -43,6 +43,7 @@ public class SpiritHunter : AI {
 
     private void DrainJuice()
     {
+        Debug.Log("Draining");
         m_player.GetComponent<PlayerStats>().RemoveFromSpookJuice(drainDamage);
     }
 
