@@ -400,7 +400,7 @@ MonoBehaviour:
   m_mintimeIdleInObjective: 1
   m_maxtimeIdleInObjective: 5
   drainCooldownTime: 3
-  drainDamage: 5
+  drainDamage: 20
   attack: {fileID: 0}
 --- !u!114 &114469207068106142
 MonoBehaviour:

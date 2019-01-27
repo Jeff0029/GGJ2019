@@ -50,8 +50,9 @@ public class SpiritHunter : AI {
 
     private void DrainJuice()
     {
-        attack.Play();
         m_player.GetComponent<PlayerStats>().RemoveFromSpookJuice(drainDamage);
+        attack.Play();
+
     }
 
 }
