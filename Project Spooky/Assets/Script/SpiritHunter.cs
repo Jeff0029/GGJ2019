@@ -15,9 +15,16 @@ public class SpiritHunter : AI {
         base.Start();
         playerLocation = m_player.GetComponent<Location>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    protected override Vector3 Spawn()
+    {
+        return GameObject.Find("Entrance").transform.position;
+    }
+
+
+    // Update is called once per frame
+    override protected void Update () {
+        base.Update();
         if (drainCooldown > 0)
         {
             drainCooldown -= Time.deltaTime;

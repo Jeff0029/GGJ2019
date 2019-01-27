@@ -22,7 +22,7 @@ GameObject:
   m_Layer: 0
   m_Name: RoomWayPoint
   m_TagString: Untagged
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -68,8 +68,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4141947456900986}
-  - component: {fileID: 114262206383400928}
   - component: {fileID: 61000674352098966}
+  - component: {fileID: 114874142337821632}
   m_Layer: 0
   m_Name: Room
   m_TagString: Room
@@ -213,7 +213,7 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114262206383400928
+--- !u!114 &114874142337821632
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -221,9 +221,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1965941463927288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e47737826ad4ed68a083014f622d0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d4a7b5b5eaf4c8fa6c2f72a1dc7bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_NotVisibleRoom: {fileID: 1965941463927288}
 --- !u!212 &212282932136724132
 SpriteRenderer:
   m_ObjectHideFlags: 1

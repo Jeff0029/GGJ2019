@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
 
             if (collision.IsTouching(m_EyesCollider))
             {
-                collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(true);
+                //collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(true);
             }
         }
     }
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.IsTouching(m_EyesCollider))
             {
-                collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(false);
+                //collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(false);
             }
         }
 	}
@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
     {
         m_CurrentGameObjectPossessing = targetObject;
 
-        targetObject.GetComponent<PossessableObject>().OnPossessionEnter();
+        m_CurrentGameObjectPossessing.GetComponent<PossessableObject>().OnPossessionEnter();
 
         //call animatiom functions
         //call the targetObject's functions
