@@ -14,6 +14,7 @@ public class AI : MonoBehaviour
     private bool m_isMoving;
 
     private Animator myAnim;
+    private SpriteRenderer myRend;
 
     protected GameObject m_player;
     protected Location m_location;
@@ -94,11 +95,11 @@ public class AI : MonoBehaviour
 
         if (m_agent.velocity.x > 0)
         {
-            //left
+            myRend.flipX = true;
         }
         else
         {
-            //right
+            myRend.flipX = false;
 
         }
     }
