@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+[RequireComponent(typeof(AudioSource))]
 public class Civilian : AI {
 
     public Transform m_entrance;
+    AudioSource civSource;
+    public AudioClip[] screams;
     public float m_spookIncreaseSpeed = 3;
     bool m_isSpooked = false;
 
@@ -15,6 +17,7 @@ public class Civilian : AI {
     private new void Start () {
         base.Start();
         m_entrance = GameObject.Find("Entrance").transform;
+        civSource = GetComponent<AudioSource>();
         myAnim = GetComponent<Animator>();
 
     }
@@ -42,6 +45,9 @@ public class Civilian : AI {
         if (!m_isSpooked)
         {
             myAnim.SetTrigger("spooked");
+
+            civSource.clip = screams[Random.Range(0, screams.Length - 1)];
+            civSource.Play();
             m_agent.speed += m_spookIncreaseSpeed;
             m_isSpooked = true;
         }
