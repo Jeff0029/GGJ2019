@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Location))]
 public class PossessableObject : MonoBehaviour 
 {
     public const string POSSESSED_ANIMATION = "possessed";
@@ -51,6 +52,7 @@ public class PossessableObject : MonoBehaviour
             m_bIsOnCooldown = true;
 
             ActivateSpookAnimation();
+            transform.parent.GetComponent<RoomBehaviour>().SpookCivilians();
         }
     }
 
