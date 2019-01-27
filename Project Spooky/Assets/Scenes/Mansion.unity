@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 40866646}
   - component: {fileID: 40866645}
   - component: {fileID: 40866644}
-  - component: {fileID: 40866643}
   m_Layer: 8
   m_Name: Floor (1)
   m_TagString: Untagged
@@ -149,23 +148,6 @@ Transform:
   m_Father: {fileID: 2016329921}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!191 &40866643
-OffMeshLink:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 191814874271309232, guid: b01527992c8064542b2674ec3fbdacc9,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 40866641}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_AreaIndex: 0
-  m_AgentTypeID: 0
-  m_Start: {fileID: 1055361481}
-  m_End: {fileID: 1281639019}
-  m_CostOverride: -1
-  m_BiDirectional: 1
-  m_Activated: 1
-  m_AutoUpdatePositions: 0
 --- !u!64 &40866644
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1991,7 +1973,6 @@ GameObject:
   - component: {fileID: 1204538181}
   - component: {fileID: 1204538180}
   - component: {fileID: 1204538179}
-  - component: {fileID: 1204538178}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
@@ -2015,23 +1996,6 @@ Transform:
   m_Father: {fileID: 2016329921}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!191 &1204538178
-OffMeshLink:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 191814874271309232, guid: b01527992c8064542b2674ec3fbdacc9,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1204538176}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_AreaIndex: 0
-  m_AgentTypeID: 0
-  m_Start: {fileID: 1163961326}
-  m_End: {fileID: 729400315}
-  m_CostOverride: -1
-  m_BiDirectional: 1
-  m_Activated: 1
-  m_AutoUpdatePositions: 0
 --- !u!64 &1204538179
 MeshCollider:
   m_ObjectHideFlags: 0

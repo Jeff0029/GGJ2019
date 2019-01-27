@@ -40,9 +40,14 @@ public class AI : MonoBehaviour
     // Use this for initialization
     protected void Start()
     {
+        NavMeshHit closestHit;
+
+        if (NavMesh.SamplePosition(gameObject.transform.position, out closestHit, 500f, NavMesh.AllAreas))
+            gameObject.transform.position = closestHit.position;
+        else
+            Debug.LogError("Could not find position on NavMesh!");
 
         m_player = GameObject.Find("Player");
-
         m_distanceToWaypointComplete += m_agent.radius;
 
         foreach (GameObject room in GameObject.FindGameObjectsWithTag("Room"))
@@ -50,15 +55,8 @@ public class AI : MonoBehaviour
             m_roamingLocations.Add(room.transform.Find("RoomWayPoint"));
         }
 
-        transform.position = Spawn();
         StartCoroutine("Roam");
     }
-
-    protected virtual Vector3 Spawn()
-    {
-        return m_spawnLocation.position;
-    }
-
 
     private IEnumerator Roam()
     {
