@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 282782405}
   - component: {fileID: 282782404}
   - component: {fileID: 282782403}
+  - component: {fileID: 282782406}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -331,7 +332,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 282782404}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 282782406}
+        m_MethodName: SpookTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &282782404
@@ -367,6 +379,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282782401}
+--- !u!114 &282782406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 282782401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d41bcc06442042e299841129a1fe9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &686666863
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +659,7 @@ Animator:
   m_GameObject: {fileID: 1540097275}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 876706539a47f4315852119f128aa993, type: 2}
+  m_Controller: {fileID: 9100000, guid: 66aea7d568980477cb0f0743b6266c8c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
