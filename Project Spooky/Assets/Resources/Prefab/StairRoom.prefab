@@ -84,9 +84,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4005621602544494}
-  - component: {fileID: 114442812274466432}
-  - component: {fileID: 61498455881635396}
   - component: {fileID: 61716880144557984}
+  - component: {fileID: 114250543852287142}
   m_Layer: 0
   m_Name: StairRoom
   m_TagString: Room
@@ -367,31 +366,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1995691781160366}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!61 &61498455881635396
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1775315603771346}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 20.6, y: 10}
-  m_EdgeRadius: 0
 --- !u!61 &61716880144557984
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -445,7 +419,7 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114442812274466432
+--- !u!114 &114250543852287142
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -453,9 +427,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1775315603771346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e47737826ad4ed68a083014f622d0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d4a7b5b5eaf4c8fa6c2f72a1dc7bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_NotVisibleRoom: {fileID: 1775315603771346}
 --- !u!191 &191345283859068332
 OffMeshLink:
   m_ObjectHideFlags: 1
