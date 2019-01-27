@@ -5,7 +5,7 @@ using UnityEngine;
 public class PossessableObject : MonoBehaviour 
 {
     public const string POSSESSED_ANIMATION = "possessed";
-    public const string SPOOKED_ANIMATION = "spooked";
+    public const string SPOOKED_ANIMATION = "spook";
 
     protected Rigidbody2D m_RigidBody;
     protected bool m_bIsOnCooldown = false;
@@ -58,7 +58,7 @@ public class PossessableObject : MonoBehaviour
     public void ResetTimer()
     {
         m_bIsOnCooldown = true;
-        m_CurrentCDTimer = 0.25f;
+        m_CurrentCDTimer = 0.5f;
     }
 
     public virtual void ActivateSpookAnimation()

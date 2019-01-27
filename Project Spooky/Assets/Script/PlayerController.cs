@@ -24,6 +24,12 @@ public class PlayerController : MonoBehaviour
     private bool m_bIsPossessing = false;
     private bool m_bIsExitingPossessionButton = false;
 
+    private bool m_bCanUseSpook = false;
+    private bool m_bUsingSpook = false;
+
+    private float m_InputWaitTimer = 0.25f;
+    private const float INPUT_WAIT_MAX = 0.25f;
+
     private Location m_location;
     // Use this for initialization
     void Start () 
@@ -38,7 +44,13 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-		
+		if (m_bIsPossessing)
+        {
+            if (m_InputWaitTimer >= 0.0f)
+            {
+                m_InputWaitTimer -= Time.deltaTime;
+            }
+        }
 	}
 
 	private void FixedUpdate()
@@ -88,15 +100,34 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            m_bIsUsingPossessionButton = true;
+            if (m_bCanUseSpook == true)
+            {
+                ActivateSpook();
+            }
+            if (!m_bIsPossessing)
+            {
+                m_bIsUsingPossessionButton = true;
+            }
         }
 
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            m_bIsUsingPossessionButton = false;
+            if (!m_bIsPossessing)
+            {
+                m_bIsUsingPossessionButton = false;
+            }
         }
+
+        else if (Input.GetKey(KeyCode.E))
+        {
+            if (m_bIsPossessing)
+            {
+                m_bUsingSpook = false;
+            }
+        }
+
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -176,24 +207,21 @@ public class PlayerController : MonoBehaviour
         }
 	}
 
-	private void OnTriggerStay2D(Collider2D collision)
-	{
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         if (collision.IsTouching(m_SpoopyRangeCollider) && collision.gameObject.tag == "PossessableObject")
         {
-            if (m_bIsUsingPossessionButton == true && m_bIsPossessing == false)
+            if (m_bIsPossessing == true && m_InputWaitTimer <= 0.0f)
+            {
+                m_bCanUseSpook = true;
+            }
+
+            else if (m_bIsUsingPossessionButton == true && m_bIsPossessing == false)
             {
                 ActivatePossession(collision.gameObject);
             }
-
-            else if (m_bIsUsingPossessionButton == true && m_bIsPossessing == true)
-            {
-                //Use possession function from object
-                collision.gameObject.GetComponent<PossessableObject>().ActivateSpook();
-
-            }
         }
-	}
-
+    }
     private void ActivatePossession(GameObject targetObject)
     {
         m_CurrentGameObjectPossessing = targetObject;
@@ -202,6 +230,7 @@ public class PlayerController : MonoBehaviour
 
         //call animatiom functions
         //call the targetObject's functions
+        Debug.Log("Activating Possession");
         m_bIsPossessing = true;
 
         this.transform.position.Set(m_CurrentGameObjectPossessing.transform.position.x,
@@ -231,5 +260,13 @@ public class PlayerController : MonoBehaviour
         m_Renderer.enabled = true;
 
         m_CurrentGameObjectPossessing = null;
+
+        m_InputWaitTimer = INPUT_WAIT_MAX;
+    }
+
+    private void ActivateSpook()
+    {
+        m_CurrentGameObjectPossessing.GetComponent<PossessableObject>().ActivateSpook();
+        m_bCanUseSpook = false;
     }
 }
