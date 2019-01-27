@@ -13,6 +13,8 @@ public class AI : MonoBehaviour
 
     private bool m_isMoving;
 
+    private Animator myAnim;
+
     protected GameObject m_player;
     protected Location m_location;
     protected Transform m_spawnLocation;
@@ -33,6 +35,7 @@ public class AI : MonoBehaviour
     private void Awake()
     {
 
+        myAnim = GetComponent<Animator>();
         m_location = GetComponent<Location>();
     }
 
@@ -73,8 +76,10 @@ public class AI : MonoBehaviour
         int locationIndex = Random.Range(0, m_roamingLocations.Count - 1);
         SetNewDestination(m_roamingLocations[locationIndex]);
         IsMoving = false;
+        myAnim.SetBool("walking", false);
         yield return new WaitForSeconds(Random.Range(m_mintimeIdleInObjective, m_maxtimeIdleInObjective));
         IsMoving = true;
+        myAnim.SetBool("walking", true;
         yield return null;
     }
 
