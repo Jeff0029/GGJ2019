@@ -52,15 +52,16 @@ public class AI : MonoBehaviour
         m_player = GameObject.Find("Player");
 
 
-        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Room"))
+        foreach (GameObject waypoint in GameObject.FindGameObjectsWithTag("Waypoint"))
         {
-            m_roamingLocations.Add(room.transform.Find("RoomWayPoint"));
+            m_roamingLocations.Add(waypoint.transform);
         }
 
         transform.position = Spawn();
 
         m_agent = gameObject.AddComponent<NavMeshAgent>() as NavMeshAgent;
         m_agent.angularSpeed = 0;
+        m_agent.radius = 0.3f;
         m_distanceToWaypointComplete += m_agent.radius;
 
         StartCoroutine("Roam");
