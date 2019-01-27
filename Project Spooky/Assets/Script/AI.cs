@@ -91,6 +91,16 @@ public class AI : MonoBehaviour
         {
             StartCoroutine("Roam");
         }
+
+        if (m_agent.velocity.x > 0)
+        {
+            //left
+        }
+        else
+        {
+            //right
+
+        }
     }
 
     void SetNewDestination(Transform destination)
