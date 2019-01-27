@@ -53,6 +53,9 @@ TagManager:
   - name: Characters
     uniqueID: 400761697
     locked: 0
+  - name: HouseOverlay
+    uniqueID: 1735291661
+    locked: 0
   - name: UI
     uniqueID: 1021055441
     locked: 0
