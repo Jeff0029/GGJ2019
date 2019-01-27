@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour 
 {
     private const float MOVEMENT_SPEED = 1.0f;
-    private const float MAX_MOVEMENT_SPEED = 3.0f;
+    private const float MAX_MOVEMENT_SPEED = 12.0f;
     private const float QUICK_DRAG_SLOWDOWN = 0.5f;
 
     private Rigidbody2D m_RigidBody;

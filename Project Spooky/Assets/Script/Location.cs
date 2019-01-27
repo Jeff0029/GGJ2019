@@ -18,5 +18,4 @@ public class Location : MonoBehaviour {
             m_currentRoom = value;
         }
     }
-
 }

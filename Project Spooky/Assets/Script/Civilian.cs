@@ -10,7 +10,9 @@ public class Civilian : AI {
     // Use this for initialization
     void Start () {
         base.Start();
-	}
+        m_entrance = GameObject.Find("Entrance").transform;
+
+    }
 
     protected override Vector3 Spawn()
     {
@@ -20,7 +22,10 @@ public class Civilian : AI {
 
     // Update is called once per frame
     override protected void Update () {
-        base.Update();
+        if (!m_isSpooked)
+        {
+            base.Update();
+        }
     }
 
     public void GetSpooked()
@@ -29,6 +34,7 @@ public class Civilian : AI {
         {
             m_agent.speed += m_spookIncreaseSpeed;
             m_agent.SetDestination(m_entrance.position);
+            m_isSpooked = true;
         }
     }
 }
