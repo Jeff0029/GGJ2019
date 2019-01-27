@@ -8,6 +8,8 @@ public class SpiritHunter : AI {
 
     public float drainCooldownTime = 3f; // Seconds
     public float drainDamage = 5f;
+    public AudioSource attack;
+
 
     Location playerLocation;
 
@@ -17,6 +19,7 @@ public class SpiritHunter : AI {
         base.Start();
         m_agent.speed = 6;
         playerLocation = m_player.GetComponent<Location>();
+        attack = transform.GetChild(1).GetComponent<AudioSource>();
     }
 
     protected override Vector3 Spawn()
@@ -38,12 +41,16 @@ public class SpiritHunter : AI {
             drainCooldown = drainCooldownTime;
             DrainJuice();
         }
+        else
+        {
+            attack.Stop();
+        }
 
     }
 
     private void DrainJuice()
     {
-        Debug.Log("Draining");
+        attack.Play();
         m_player.GetComponent<PlayerStats>().RemoveFromSpookJuice(drainDamage);
     }
 
