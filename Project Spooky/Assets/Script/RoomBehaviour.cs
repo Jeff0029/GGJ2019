@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomBehaviour : MonoBehaviour 
 {
-    BoxCollider2D m_RoomCollider;
+    public BoxCollider2D m_RoomCollider;
     public GameObject m_NotVisibleRoom;
 
     public int m_pointsPerSpook = 25;
@@ -13,7 +13,7 @@ public class RoomBehaviour : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        m_RoomCollider = this.gameObject.GetComponent<BoxCollider2D>();
+        //m_RoomCollider = this.gameObject.GetComponent<BoxCollider2D>();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +24,15 @@ public class RoomBehaviour : MonoBehaviour
 
     public void SetRoomVisible(bool bIsVisible)
     {
+        if (bIsVisible == true && m_NotVisibleRoom.activeSelf == false)
+        {
+            Debug.Log("Setting room " + this.name + " - to true/visible");   
+        }
+
+        else if (bIsVisible == false && m_NotVisibleRoom.activeSelf == true)
+        {
+            Debug.Log("Setting room " + this.name + " - to false/invisible");
+        }
         m_NotVisibleRoom.SetActive(bIsVisible);
     }
 

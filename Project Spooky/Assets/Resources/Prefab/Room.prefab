@@ -3204,6 +3204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d4a7b5b5eaf4c8fa6c2f72a1dc7bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_RoomCollider: {fileID: 61000674352098966}
   m_NotVisibleRoom: {fileID: 1385084142441450}
   m_pointsPerSpook: 25
   m_juicePerSpook: 15

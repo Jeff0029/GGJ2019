@@ -44,6 +44,7 @@ public class PossessableObject : MonoBehaviour
     {
         if (m_bIsOnCooldown == false)
         {
+            /*
             float randomY = Random.Range(2.0f, 8.0f);
             float randomX = Random.Range(-5.0f, 5.0f);
 
@@ -51,6 +52,10 @@ public class PossessableObject : MonoBehaviour
 
             m_bIsOnCooldown = true;
 
+            ActivateSpookAnimation();
+            transform.parent.GetComponent<RoomBehaviour>().SpookCivilians();*/
+
+            m_bIsOnCooldown = true;
             ActivateSpookAnimation();
             transform.parent.GetComponent<RoomBehaviour>().SpookCivilians();
         }

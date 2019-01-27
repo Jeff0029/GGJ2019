@@ -181,6 +181,7 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+        /*
         if (collision.tag == "Room")
         {
 
@@ -191,13 +192,14 @@ public class PlayerController : MonoBehaviour
                 collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(false);
             }
         }
+        */
     }
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
         if (collision.tag == "Room")
         {
-            if (collision.IsTouching(m_EyesCollider))
+            if (!collision.IsTouching(m_EyesCollider))
             {
                 collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(true);
             }
@@ -216,6 +218,16 @@ public class PlayerController : MonoBehaviour
             else if (m_bIsUsingPossessionButton == true && m_bIsPossessing == false)
             {
                 ActivatePossession(collision.gameObject);
+            }
+        }
+
+        if (collision.tag == "Room")
+        {
+            m_location.CurrentRoom = collision.gameObject;
+
+            if (collision.IsTouching(m_EyesCollider))
+            {
+                collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(false);
             }
         }
     }
