@@ -71,7 +71,7 @@ public class PlayerUI : MonoBehaviour
         else
         {
             m_bTriggeredSpookyScore = false;
-            m_SpoopyScoreText.color = new Color(0, 0, 0);
+            m_SpoopyScoreText.color = new Color(255, 255, 255);
         }
     }
 }
