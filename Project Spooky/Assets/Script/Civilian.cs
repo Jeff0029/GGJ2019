@@ -9,10 +9,13 @@ public class Civilian : AI {
     public float m_spookIncreaseSpeed = 3;
     bool m_isSpooked = false;
 
+    private Animator myAnim;
+
     // Use this for initialization
     private new void Start () {
         base.Start();
         m_entrance = GameObject.Find("Entrance").transform;
+        myAnim = GetComponent<Animator>();
 
     }
 
@@ -38,6 +41,7 @@ public class Civilian : AI {
     {
         if (!m_isSpooked)
         {
+            myAnim.SetTrigger("spooked");
             m_agent.speed += m_spookIncreaseSpeed;
             m_isSpooked = true;
         }

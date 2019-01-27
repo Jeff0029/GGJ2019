@@ -13,6 +13,9 @@ public class AI : MonoBehaviour
 
     private bool m_isMoving;
 
+    private Animator myAnim;
+    private SpriteRenderer myRend;
+
     protected GameObject m_player;
     protected Location m_location;
     protected Transform m_spawnLocation;
@@ -33,6 +36,7 @@ public class AI : MonoBehaviour
     private void Awake()
     {
 
+        myAnim = GetComponent<Animator>();
         m_location = GetComponent<Location>();
     }
 
@@ -49,15 +53,16 @@ public class AI : MonoBehaviour
         m_player = GameObject.Find("Player");
 
 
-        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Room"))
+        foreach (GameObject waypoint in GameObject.FindGameObjectsWithTag("Waypoint"))
         {
-            m_roamingLocations.Add(room.transform.Find("RoomWayPoint"));
+            m_roamingLocations.Add(waypoint.transform);
         }
 
         transform.position = Spawn();
 
         m_agent = gameObject.AddComponent<NavMeshAgent>() as NavMeshAgent;
         m_agent.angularSpeed = 0;
+        m_agent.radius = 0.3f;
         m_distanceToWaypointComplete += m_agent.radius;
 
         StartCoroutine("Roam");
@@ -73,8 +78,10 @@ public class AI : MonoBehaviour
         int locationIndex = Random.Range(0, m_roamingLocations.Count - 1);
         SetNewDestination(m_roamingLocations[locationIndex]);
         IsMoving = false;
+        myAnim.SetBool("walking", false);
         yield return new WaitForSeconds(Random.Range(m_mintimeIdleInObjective, m_maxtimeIdleInObjective));
         IsMoving = true;
+        myAnim.SetBool("walking", true);
         yield return null;
     }
 
@@ -84,6 +91,16 @@ public class AI : MonoBehaviour
         if (Vector3.Distance(m_agent.destination, transform.position) <= m_distanceToWaypointComplete)
         {
             StartCoroutine("Roam");
+        }
+
+        if (m_agent.velocity.x > 0)
+        {
+            myRend.flipX = true;
+        }
+        else
+        {
+            myRend.flipX = false;
+
         }
     }
 
