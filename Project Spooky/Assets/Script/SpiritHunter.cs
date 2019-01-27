@@ -6,8 +6,8 @@ public class SpiritHunter : AI {
 
     private float drainCooldown = 0;
 
-    public float drainCooldownTime = 3f; // Seconds
-    public float drainDamage = 5f;
+    public float drainCooldownTime = 0.1f; // Seconds
+    public float drainDamage = 1f;
     public AudioSource attack;
 
 
