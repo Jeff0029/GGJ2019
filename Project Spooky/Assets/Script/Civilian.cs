@@ -7,14 +7,16 @@ public class Civilian : AI {
     public Transform m_entrance;
     public float m_spookIncreaseSpeed = 3;
     bool m_isSpooked = false;
+
     // Use this for initialization
-    void Start () {
+    private new void Start () {
         base.Start();
+        transform.position = this.Spawn();
         m_entrance = GameObject.Find("Entrance").transform;
 
     }
 
-    protected override Vector3 Spawn()
+    protected Vector3 Spawn()
     {
         int index = Random.Range(0, m_roamingLocations.Count - 1);
         return m_roamingLocations[index].position;
@@ -26,6 +28,10 @@ public class Civilian : AI {
         {
             base.Update();
         }
+        else
+        {
+            m_agent.SetDestination(m_entrance.position);
+        }
     }
 
     public void GetSpooked()
@@ -33,7 +39,6 @@ public class Civilian : AI {
         if (!m_isSpooked)
         {
             m_agent.speed += m_spookIncreaseSpeed;
-            m_agent.SetDestination(m_entrance.position);
             m_isSpooked = true;
         }
     }
