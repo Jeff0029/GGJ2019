@@ -2200,7 +2200,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1965941463927288, guid: 5870c9bd4958e4e4ab50e07f43ccc3fd, type: 2}
       propertyPath: m_Name
-      value: Entrance
+      value: Room
       objectReference: {fileID: 0}
     - target: {fileID: 212282932136724132, guid: 5870c9bd4958e4e4ab50e07f43ccc3fd,
         type: 2}

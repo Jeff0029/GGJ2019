@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Civilian : AI {
 
@@ -11,12 +12,11 @@ public class Civilian : AI {
     // Use this for initialization
     private new void Start () {
         base.Start();
-        transform.position = this.Spawn();
         m_entrance = GameObject.Find("Entrance").transform;
 
     }
 
-    protected Vector3 Spawn()
+    protected override Vector3 Spawn()
     {
         int index = Random.Range(0, m_roamingLocations.Count - 1);
         return m_roamingLocations[index].position;

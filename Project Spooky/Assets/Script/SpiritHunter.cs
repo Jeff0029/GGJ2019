@@ -15,11 +15,11 @@ public class SpiritHunter : AI {
     private new void Start()
     {
         base.Start();
-        transform.position = this.Spawn();
+        m_agent.speed = 6;
         playerLocation = m_player.GetComponent<Location>();
     }
 
-    protected Vector3 Spawn()
+    protected override Vector3 Spawn()
     {
         return GameObject.Find("Entrance").transform.position;
     }

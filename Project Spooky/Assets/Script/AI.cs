@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-[RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Location))]
 public class AI : MonoBehaviour
 {
@@ -33,7 +32,7 @@ public class AI : MonoBehaviour
 
     private void Awake()
     {
-        m_agent = GetComponent<NavMeshAgent>();
+
         m_location = GetComponent<Location>();
     }
 
@@ -48,14 +47,25 @@ public class AI : MonoBehaviour
             Debug.LogError("Could not find position on NavMesh!");
 
         m_player = GameObject.Find("Player");
-        m_distanceToWaypointComplete += m_agent.radius;
+
 
         foreach (GameObject room in GameObject.FindGameObjectsWithTag("Room"))
         {
             m_roamingLocations.Add(room.transform.Find("RoomWayPoint"));
         }
 
+        transform.position = Spawn();
+
+        m_agent = gameObject.AddComponent<NavMeshAgent>() as NavMeshAgent;
+        m_agent.angularSpeed = 0;
+        m_distanceToWaypointComplete += m_agent.radius;
+
         StartCoroutine("Roam");
+    }
+
+    protected virtual Vector3 Spawn()
+    {
+        return m_spawnLocation.position;
     }
 
     private IEnumerator Roam()
