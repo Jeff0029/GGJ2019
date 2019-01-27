@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
 
             if (collision.IsTouching(m_EyesCollider))
             {
-                //collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(true);
+                collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(false);
             }
         }
     }
@@ -199,7 +199,7 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.IsTouching(m_EyesCollider))
             {
-                //collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(false);
+                collision.gameObject.GetComponent<RoomBehaviour>().SetRoomVisible(true);
             }
         }
 	}
