@@ -10,6 +10,7 @@ public class Civilian : AI {
     public AudioClip[] screams;
     public float m_spookIncreaseSpeed = 3;
     bool m_isSpooked = false;
+    bool bLeftHouse = false;
 
     private Animator myAnim;
 
@@ -37,6 +38,10 @@ public class Civilian : AI {
         else
         {
             m_agent.SetDestination(m_entrance.position);
+            if (Vector3.Distance(m_entrance.position, transform.position) <= m_distanceToWaypointComplete)
+            {
+                GameObject.Find("AIFactory").GetComponent<AISpawning>().Respawn(gameObject);
+            }
         }
     }
 
