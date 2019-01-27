@@ -38,6 +38,7 @@ public class AI : MonoBehaviour
 
         myAnim = GetComponent<Animator>();
         m_location = GetComponent<Location>();
+        myRend = GetComponent<SpriteRenderer>();
     }
 
     // Use this for initialization
@@ -95,11 +96,11 @@ public class AI : MonoBehaviour
 
         if (m_agent.velocity.x > 0)
         {
-            myRend.flipX = true;
+            myRend.flipX = false;
         }
         else
         {
-            myRend.flipX = false;
+            myRend.flipX = true;
 
         }
     }

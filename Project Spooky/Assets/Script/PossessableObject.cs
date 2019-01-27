@@ -14,6 +14,7 @@ public class PossessableObject : MonoBehaviour
     protected float m_CurrentCDTimer;
 
     protected Animator m_Animator;
+    AudioSource haunted;
     protected bool m_IsObjectPossessed = false;
 
 	// Use this for initialization
@@ -21,6 +22,7 @@ public class PossessableObject : MonoBehaviour
     {
         m_RigidBody = this.GetComponent<Rigidbody2D>();
         m_Animator = this.GetComponent<Animator>();
+        haunted = this.GetComponent<AudioSource>();
 
         m_CurrentCDTimer = m_CooldownTimer;
 	}
@@ -55,6 +57,7 @@ public class PossessableObject : MonoBehaviour
             ActivateSpookAnimation();
             transform.parent.GetComponent<RoomBehaviour>().SpookCivilians();*/
 
+            haunted.Play();
             m_bIsOnCooldown = true;
             ActivateSpookAnimation();
             transform.parent.GetComponent<RoomBehaviour>().SpookCivilians();
