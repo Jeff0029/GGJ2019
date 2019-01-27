@@ -26,9 +26,12 @@ public class PlayerController : MonoBehaviour
 
     private bool m_bCanUseSpook = false;
     private bool m_bUsingSpook = false;
+    private bool m_bIsPlayerDead = false;
 
     private float m_InputWaitTimer = 0.25f;
     private const float INPUT_WAIT_MAX = 0.25f;
+
+    private PlayerStats m_PlayerStats;
 
     private Location m_location;
     // Use this for initialization
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour
         m_SpoopyRangeCollider = this.GetComponent<BoxCollider2D>();
         m_Renderer = this.GetComponent<SpriteRenderer>();
         m_location = this.GetComponent<Location>();
+        m_PlayerStats = this.GetComponent<PlayerStats>();
 
     }
 	
@@ -51,12 +55,20 @@ public class PlayerController : MonoBehaviour
                 m_InputWaitTimer -= Time.deltaTime;
             }
         }
+
+        if (m_PlayerStats.GetCurrentSpookJuice() <= 0)
+        {
+            m_bIsPlayerDead = true;
+        }
 	}
 
 	private void FixedUpdate()
     {
-        GetPlayerInput();
-        CapMovementSpeed();
+        if (m_bIsPlayerDead == false)
+        {
+            GetPlayerInput();
+            CapMovementSpeed();
+        }
 	}
 
     private void GetPlayerInput()
@@ -67,7 +79,6 @@ public class PlayerController : MonoBehaviour
          * Space bar / left click to use the item when you're in it
          * E / Right click to exit
          */
-
         if (!m_bIsPossessing)
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -288,5 +299,10 @@ public class PlayerController : MonoBehaviour
     {
         m_CurrentGameObjectPossessing.GetComponent<PossessableObject>().ActivateSpook();
         m_bCanUseSpook = false;
+    }
+
+    public bool GetIsDead()
+    {
+        return m_bIsPlayerDead;
     }
 }

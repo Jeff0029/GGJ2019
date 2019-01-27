@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour 
 {
     const float MAX_SPOOKJUICE = 100.0f;
-    const float SPOOKJUICE_DECREASE_AMOUNT = 0.5f;
+    const float SPOOKJUICE_DECREASE_AMOUNT = 1.0f;
     const float SPOOKJUICE_DECREASE_INTERVAL = 0.5f;
 
     float m_CurrentSpookJuiceDecreaseTimer;
@@ -48,8 +48,6 @@ public class PlayerStats : MonoBehaviour
         {
             //player is dead.... even though he is already dead....
             //does that make him double dead? Can a ghost die? :thinking emoji:
-
-            m_CurrentSpookJuice = MAX_SPOOKJUICE;
         }
 
         //Spooky number

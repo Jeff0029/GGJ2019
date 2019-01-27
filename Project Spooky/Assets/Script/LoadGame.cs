@@ -9,4 +9,9 @@ public class LoadGame : MonoBehaviour {
     {
         SceneManager.LoadScene("Mansion");
     }
+
+    public void NotSpookTime()
+    {
+        SceneManager.LoadScene("Main");
+    }
 }
