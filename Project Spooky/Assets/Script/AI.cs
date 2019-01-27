@@ -64,6 +64,7 @@ public class AI : MonoBehaviour
         m_agent = gameObject.AddComponent<NavMeshAgent>() as NavMeshAgent;
         m_agent.angularSpeed = 0;
         m_agent.radius = 0.3f;
+        m_agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         m_distanceToWaypointComplete += m_agent.radius;
 
         StartCoroutine("Roam");
