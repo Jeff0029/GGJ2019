@@ -14,4 +14,11 @@ public class LoadGame : MonoBehaviour {
     {
         SceneManager.LoadScene("Menu");
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
+    }
 }
