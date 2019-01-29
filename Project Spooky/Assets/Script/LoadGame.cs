@@ -12,6 +12,6 @@ public class LoadGame : MonoBehaviour {
 
     public void NotSpookTime()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Menu");
     }
 }
